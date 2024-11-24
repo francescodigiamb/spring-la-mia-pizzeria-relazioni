@@ -1,9 +1,12 @@
 package it.lessons.pizzeria.model;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -32,6 +35,9 @@ public class Pizza {
 	@NotNull(message = "The price can't be null")
 	@Min(value = 4, message = "The price must be at least 4")
 	private Double price;
+
+	@OneToMany(mappedBy = "pizza")
+	private List<SpecialOffer> specialOffers;
 
 	public Integer getId() {
 		return id;

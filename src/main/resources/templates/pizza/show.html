@@ -7,8 +7,8 @@
 </head>
 
 <body>
-    <div class="d-flex align-items-start flex-column mb-3" style="height: 85vh;">
-        <div class="container mb-auto" th:object="${pizzas}">
+    <div class="d-flex align-items-start flex-column mb-3" style="height: 85vh;" th:object="${pizzas}">
+        <div class="container mb-auto">
             <br>
             <div th:replace="~{fragments :: navbar}"></div>
             <br>
@@ -27,6 +27,38 @@
                 </div>
             </div>
         </div>
+
+        <div th:if="*{!specialOffers.isEmpty()}">
+            <table class="content table table-striped">
+                <thead>
+                    <tr>
+                        <th>
+                            Title
+                        </th>
+                        <th>
+                            Start Offer
+                        </th>
+                        <th>
+                            End Offer
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="specialoffers : ${pizza.specialOffers}">
+                        <td th:text="${specialoffer.title}">
+                        </td>
+                        <td th:text="${specialoffer.startDate}">
+                        </td>
+                        <td th:text="${specialoffer.endDate}">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div th:if="*{specialOffers.isEmpty()}">
+            <span> This pizza haven't a special offer</span>
+        </div>
+
         <div class="container">
             <div class="row">
                 <div class="col-md-2">
@@ -44,6 +76,11 @@
                             <i class="fas fa-trash-alt"></i> Delete
                         </button>
                     </form>
+                </div>
+                <div class="col-md-2">
+                    <a th:href="@{|/pizzeria/{id}/specialoffer (id=${pizza.id})|}" class="btn btn-primary">
+                        New Special Offer
+                    </a>
                 </div>
             </div>
         </div>

@@ -1,5 +1,6 @@
 package it.lessons.pizzeria.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import it.lessons.pizzeria.model.Pizza;
+import it.lessons.pizzeria.model.SpecialOffer;
 import it.lessons.pizzeria.repository.PizzaRepository;
 import jakarta.validation.Valid;
 
@@ -97,6 +99,21 @@ public class ControllerPizzeria {
 		pizzaRepo.deleteById(id);
 
 		return "redirect:/pizzeria";
+	}
+
+	@GetMapping("/{id}/specialoffer")
+	public String specialoffer(@PathVariable Integer id, Model model) {
+
+		Pizza pizza = pizzaRepo.findById(id).get();
+
+		SpecialOffer specialOffer = new SpecialOffer();
+		specialOffer.setPizza(pizza);
+		specialOffer.setStartDate(LocalDate.now());
+
+		model.addAttribute("specialoffers", specialOffer);
+
+		return "/specialoffers/edit";
+
 	}
 
 }

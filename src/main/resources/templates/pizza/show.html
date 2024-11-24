@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <div th:replace="~{fragments :: head}"></div>
+    <title th:text="${pizzas.name}"> </title>
+</head>
+
+<body>
+    <div class="d-flex align-items-start flex-column mb-3" style="height: 85vh;">
+        <div class="container mb-auto" th:object="${pizzas}">
+            <br>
+            <div th:replace="~{fragments :: navbar}"></div>
+            <br>
+            <h1 th:text="*{name}"></h1>
+            <hr />
+            <div class="row">
+                <div class="col-8">
+                    <dl>
+                        <dt>Photo</dt>
+                        <dd><img th:src="@{*{photo}}" th:alt="*{name}" width="100px" height="100px"></dd>
+                        <dt>Description</dt>
+                        <dd th:text="*{description}"></dd>
+                        <dt>Price</dt>
+                        <dd th:text="|*{#numbers.formatDecimal(price, 0, 2, 'COMMA')} €|"></dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2">
+                    <a class="btn btn-primary" th:href="@{/pizzeria}" role="button">Back</a>
+                </div>
+                <div class="col-md-2">
+                    <a class="btn btn-primary" th:href="@{|/pizzeria/edit/*{id}|}">
+                        <i class="fas fa-edit"></i> Edit
+                    </a>
+                </div>
+                <div class="col-md-2">
+                    <form action="#" th:action="@{|/pizzeria/delete/*{id}|}" method="post">
+                        <button class="btn btn-danger" type="submit" id="delete-button"
+                            onclick="return confirm('Are you sure?')">
+                            <i class="fas fa-trash-alt"></i> Delete
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div th:replace="~{fragments :: script}"></div>
+</body>
+
+</html>

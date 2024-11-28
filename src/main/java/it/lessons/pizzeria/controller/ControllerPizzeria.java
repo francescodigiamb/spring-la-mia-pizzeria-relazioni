@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import it.lessons.pizzeria.model.Pizza;
 import it.lessons.pizzeria.model.SpecialOffer;
 import it.lessons.pizzeria.repository.PizzaRepository;
+import it.lessons.pizzeria.repository.SpecialOfferRepository;
 import jakarta.validation.Valid;
 
 import org.springframework.web.bind.annotation.PostMapping;
@@ -110,7 +112,7 @@ public class ControllerPizzeria {
 		specialOffer.setPizza(pizza);
 		specialOffer.setStartDate(LocalDate.now());
 
-		model.addAttribute("specialoffers", specialOffer);
+		model.addAttribute("specialoffer", specialOffer);
 
 		return "/specialoffers/edit";
 

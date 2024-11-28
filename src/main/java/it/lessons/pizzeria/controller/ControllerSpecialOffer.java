@@ -6,13 +6,14 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import it.lessons.pizzeria.model.Pizza;
 import it.lessons.pizzeria.model.SpecialOffer;
 import it.lessons.pizzeria.repository.SpecialOfferRepository;
 import jakarta.validation.Valid;
 
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 @Controller
 @RequestMapping("/specialoffer")
@@ -22,16 +23,16 @@ public class ControllerSpecialOffer {
     private SpecialOfferRepository specialOfferRepo;
 
     @PostMapping("/create")
-    public String store(@Valid @ModelAttribute("specialoffer") SpecialOffer specialOffer, BindingResult bindingResult,
+    public String store(@Valid @ModelAttribute("specialoffer") SpecialOffer offer, BindingResult bindingResult,
             Model model) {
 
         if (bindingResult.hasErrors()) {
             return "specialoffers/edit";
         }
 
-        specialOfferRepo.save(specialOffer);
+        specialOfferRepo.save(offer);
 
-        return "redirect:/pizzeria/show/" + specialOffer.getPizza().getId();
+        return "redirect:/pizzeria/show/" + offer.getPizza().getId();
     }
 
 }

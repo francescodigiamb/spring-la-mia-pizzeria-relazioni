@@ -37,7 +37,15 @@ public class Pizza {
 	private Double price;
 
 	@OneToMany(mappedBy = "pizza")
-	private List<SpecialOffer> specialOffers;
+	private List<SpecialOffer> offers;
+
+	public List<SpecialOffer> getOffers() {
+		return offers;
+	}
+
+	public void setOffers(List<SpecialOffer> offers) {
+		this.offers = offers;
+	}
 
 	public Integer getId() {
 		return id;

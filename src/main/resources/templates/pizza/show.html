@@ -28,7 +28,7 @@
             </div>
         </div>
 
-        <div th:if="*{!specialOffers.isEmpty()}">
+        <div class="container" th:if="*{!offers.isEmpty()}">
             <table class="content table table-striped">
                 <thead>
                     <tr>
@@ -41,21 +41,26 @@
                         <th>
                             End Offer
                         </th>
+                        <th>Delete
+
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr th:each="specialoffers : ${pizza.specialOffers}">
+                    <tr th:each="specialoffer : ${pizzas.offers}">
                         <td th:text="${specialoffer.title}">
                         </td>
                         <td th:text="${specialoffer.startDate}">
                         </td>
                         <td th:text="${specialoffer.endDate}">
                         </td>
+                        <td>
+                        </td>
                     </tr>
                 </tbody>
             </table>
         </div>
-        <div th:if="*{specialOffers.isEmpty()}">
+        <div class="container py-3" th:if="*{offers.isEmpty()}">
             <span> This pizza haven't a special offer</span>
         </div>
 
@@ -78,7 +83,7 @@
                     </form>
                 </div>
                 <div class="col-md-2">
-                    <a th:href="@{|/pizzeria/{id}/specialoffer (id=${pizza.id})|}" class="btn btn-primary">
+                    <a th:href="@{/pizzeria/{id}/specialoffer (id=${pizzas.id})}" class="btn btn-primary">
                         New Special Offer
                     </a>
                 </div>

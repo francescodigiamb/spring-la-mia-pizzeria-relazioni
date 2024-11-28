@@ -52,7 +52,7 @@ public class SpecialOffer {
     }
 
     public void setTitle(String title) {
-        title = title;
+        this.title = title;
     }
 
     public LocalDate getStartDate() {

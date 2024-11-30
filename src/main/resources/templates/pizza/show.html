@@ -25,6 +25,12 @@
                         <dd th:text="|*{#numbers.formatDecimal(price, 0, 2, 'COMMA')} €|"></dd>
                     </dl>
                 </div>
+                <div class="col-4">
+                    <h4>Ingredient</h4>
+                    <ul>
+                        <li th:each="ingre : *{ingredients}" th:text="${ingre.name}"></li>
+                    </ul>
+                </div>
             </div>
         </div>
 

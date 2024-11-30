@@ -54,6 +54,15 @@
                         </ul>
                     </div>
                 </div>
+                <div class="col-4">
+                    <h5>Ingredients</h5>
+                    <div class="form-check" th:each="ingre : ${allIngredients}">
+
+                        <input type="checkbox" class="form-check-input" th:id="|name_${ingre.id}|"
+                            th:value="${ingre.id}" th:field="*{ingredients}">
+                        <label th:for="|name_${ingre.id}|" class="form-check-label" th:text="${ingre.name}"></label>
+                    </div>
+                </div>
                 <!-- Pulsanti -->
                 <div class="mb-3 col-3">
                     <button type="submit" class="btn btn-primary">Update pizza</button>
